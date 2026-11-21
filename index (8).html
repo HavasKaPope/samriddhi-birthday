@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050407">
+  <title>Birthday Surprise</title>
+
+  <!-- ONE font link only (the old file loaded them twice) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- One link PER font: if one fails to load, the others still work -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+  <!-- Backup: fonts stored inside the project (see assets/fonts) -->
+  <link rel="stylesheet" href="fonts.css?v=2">
+
+  <!-- ?v=2 forces the browser to load the NEW files instead of cached ones -->
+  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="element3.css?v=7">
+  <link rel="stylesheet" href="element2.css?v=3">
+  <link rel="stylesheet" href="heartframe.css?v=1">
+  <link rel="stylesheet" href="element4.css?v=8">
+  <link rel="stylesheet" href="globals.css?v=3">
+  <script src="script.js?v=3" defer></script>
+  <script src="screens.js?v=19" defer></script>
+  <script src="element3.js?v=8" defer></script>
+  <script src="element2.js?v=1" defer></script>
+  <script src="element4.js?v=4" defer></script>
+  <script src="element5.js?v=6" defer></script>
+  <script src="element6.js?v=5" defer></script>
+  <script src="element7.js?v=5" defer></script>
+  <script src="element8.js?v=4" defer></script>
+  <script src="globals.js?v=5" defer></script>
+  <script src="element9.js?v=1" defer></script>
+  <script src="sfx.js?v=3" defer></script>
+</head>
+
+<body>
+
+<!-- Cartoon penguin, drawn once and reused in 2b -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pgn" viewBox="0 0 80 92">
+    <ellipse cx="28" cy="86" rx="11" ry="5" fill="#ffb347"/><ellipse cx="52" cy="86" rx="11" ry="5" fill="#ffb347"/>
+    <ellipse cx="12" cy="55" rx="6" ry="14" transform="rotate(15 12 55)" fill="#3b2a5c"/>
+    <ellipse cx="68" cy="55" rx="6" ry="14" transform="rotate(-15 68 55)" fill="#3b2a5c"/>
+    <ellipse cx="40" cy="52" rx="28" ry="33" fill="#3b2a5c"/>
+    <ellipse cx="40" cy="60" rx="18" ry="22" fill="#fff6ee"/>
+    <circle cx="31" cy="38" r="5" fill="#fff"/><circle cx="49" cy="38" r="5" fill="#fff"/>
+    <circle cx="31" cy="39" r="2.8" fill="#1d1230"/><circle cx="49" cy="39" r="2.8" fill="#1d1230"/>
+    <circle cx="32" cy="37.5" r="1" fill="#fff"/><circle cx="50" cy="37.5" r="1" fill="#fff"/>
+    <path d="M25 30l8-3M55 30l-8-3" stroke="#fff6ee" stroke-width="2" stroke-linecap="round"/>
+    <path d="M35 45h10l-5 7z" fill="#ffb347"/>
+    <circle cx="23" cy="47" r="4.5" fill="#ff8fb3" opacity=".75"/><circle cx="57" cy="47" r="4.5" fill="#ff8fb3" opacity=".75"/>
+    <path d="M63 18q5 7 0 11q-5-4 0-11z" fill="#8fd3ff"/>
+  </symbol>
+</svg>
+
+<!-- ==========================================
+     OPENING CEREMONY INTRO
+========================================== -->
+<div class="darkness-scene" id="darknessScene" aria-hidden="true">
+  <div class="ceremony-light"></div>
+  <div class="rays"></div>
+
+  <div class="darkness-glow glow-one"></div>
+  <div class="darkness-glow glow-two"></div>
+  <div class="darkness-glow glow-three"></div>
+
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+  <div class="ring ring-3"></div>
+
+  <div class="intro-stars">
+    <span>✦</span><span>✧</span><span>♡</span><span>✦</span>
+    <span>✧</span><span>♥</span><span>✦</span><span>♡</span>
+  </div>
+
+  <div class="intro-message">
+    <p class="intro-small">A LITTLE SOMETHING FOR YOU</p>
+    <div class="intro-crest">♡</div>
+    <h2 class="intro-title">
+      <span class="line line-1">Something Magical</span>
+      <span class="line line-2">Awaits You</span>
+    </h2>
+    <div class="intro-divider">✧ ── ♡ ── ✧</div>
+  </div>
+
+  <div class="flash"></div>
+</div>
+
+<!-- ==========================================
+     PASSCODE SCREEN
+========================================== -->
+<main class="passcode-scene" id="passcodeScene" hidden>
+  <div class="passcode-stars" aria-hidden="true">
+    <span>✦</span><span>✧</span><span>✦</span><span>♡</span>
+  </div>
+
+  <div class="e2-stickers" aria-hidden="true">
+    <div class="e2-st" style="--x:6%;--y:16%;--w:58px;--r:-10deg;--d:5s"><svg viewBox="0 0 64 64"><path d="M32 57C8 39 6 21 18 14c7-3 12 1 14 6 2-5 7-9 14-6 12 7 10 25-14 43z" fill="#ff8fb3"/><path d="M17 23c1-4 5-6 8-4" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/><circle cx="25" cy="33" r="2.4" fill="#6b2d4a"/><circle cx="39" cy="33" r="2.4" fill="#6b2d4a"/><path d="M28 39q4 4 8 0" stroke="#6b2d4a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="20" cy="38" r="3" fill="#ff5c8d" opacity=".45"/><circle cx="44" cy="38" r="3" fill="#ff5c8d" opacity=".45"/></svg></div>
+    <div class="e2-st" style="--x:15%;--y:70%;--w:54px;--r:8deg;--d:6s;--dl:-2s"><svg viewBox="0 0 64 64"><g fill="#cdb4ff"><circle cx="32" cy="17" r="10"/><circle cx="46" cy="27" r="10"/><circle cx="41" cy="43" r="10"/><circle cx="23" cy="43" r="10"/><circle cx="18" cy="27" r="10"/></g><circle cx="32" cy="32" r="11" fill="#ffd76a"/><circle cx="28" cy="30" r="1.8" fill="#6b2d4a"/><circle cx="36" cy="30" r="1.8" fill="#6b2d4a"/><path d="M29 35q3 3 6 0" stroke="#6b2d4a" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+    <div class="e2-st" style="--x:3.5%;--y:43%;--w:48px;--r:-6deg;--d:7s;--dl:-1s"><svg viewBox="0 0 64 80"><path d="M32 70c0 6-3 6 0 10" stroke="#ffd6ec" stroke-width="2" fill="none"/><path d="M28 62h8l-4 6z" fill="#ff5c8d"/><ellipse cx="32" cy="30" rx="22" ry="28" fill="#ff7aa2"/><path d="M18 20c2-6 7-9 12-9" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".6"/></svg></div>
+    <div class="e2-st" style="--x:88%;--y:13%;--w:54px;--r:10deg;--d:5.5s;--dl:-3s"><svg viewBox="0 0 64 64"><polygon points="32,5 40,24 59,25 44,38 49,57 32,46 15,57 20,38 5,25 24,24" fill="#ffd76a" stroke="#ffe9a0" stroke-width="3" stroke-linejoin="round"/><circle cx="27" cy="33" r="2.2" fill="#6b2d4a"/><circle cx="37" cy="33" r="2.2" fill="#6b2d4a"/><path d="M29 39q3 3 6 0" stroke="#6b2d4a" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="23" cy="38" r="2.6" fill="#ff8fb3" opacity=".6"/><circle cx="41" cy="38" r="2.6" fill="#ff8fb3" opacity=".6"/></svg></div>
+    <div class="e2-st" style="--x:90%;--y:60%;--w:60px;--r:-8deg;--d:6.5s;--dl:-1.5s"><svg viewBox="0 0 64 64"><path d="M14 34h36l-6 24H20z" fill="#f7a8c8"/><path d="M24 34l2 24M32 34v24M40 34l-2 24" stroke="#fff" stroke-width="2" opacity=".5"/><path d="M12 34q0-16 20-20 20 4 20 20z" fill="#fff1f6"/><circle cx="32" cy="12" r="5" fill="#ff4f7b"/><circle cx="24" cy="26" r="1.8" fill="#b49af2"/><circle cx="38" cy="22" r="1.8" fill="#ffd76a"/><circle cx="44" cy="29" r="1.8" fill="#ff8fb3"/></svg></div>
+    <div class="e2-st" style="--x:80%;--y:80%;--w:52px;--r:6deg;--d:5.2s;--dl:-2.5s"><svg viewBox="0 0 64 64"><rect x="11" y="28" width="42" height="28" rx="3" fill="#b49af2"/><rect x="8" y="21" width="48" height="11" rx="3" fill="#cbb8ff"/><rect x="29" y="21" width="6" height="35" fill="#ffd76a"/><path d="M32 21c-10-14-20-4-8 0zM32 21c10-14 20-4 8 0z" fill="#ffd76a"/></svg></div>
+    <div class="e2-st" style="--x:21%;--y:6%;--w:50px;--r:-14deg;--d:6s;--dl:-4s"><svg viewBox="0 0 64 64"><path d="M32 32L9 17Q3 32 9 47z" fill="#ff7aa2"/><path d="M32 32l23-15q6 15 0 30z" fill="#ff7aa2"/><circle cx="32" cy="32" r="8" fill="#ff5c8d"/><circle cx="29" cy="29" r="2" fill="#fff" opacity=".6"/></svg></div>
+  </div>
+
+  <section class="passcode-layout" id="passcodeLayout">
+
+    <!-- Bear peeking over the top of the card -->
+    <div class="e2-bear" aria-hidden="true">
+      <svg viewBox="0 0 140 108">
+        <circle cx="38" cy="38" r="15" fill="#e2a96f"/><circle cx="38" cy="38" r="8" fill="#f6d3b0"/>
+        <circle cx="102" cy="38" r="15" fill="#e2a96f"/><circle cx="102" cy="38" r="8" fill="#f6d3b0"/>
+        <ellipse cx="70" cy="64" rx="44" ry="37" fill="#f0c08a"/>
+        <polygon points="70,2 52,36 88,36" fill="#f7a8c8"/><circle cx="70" cy="3" r="6" fill="#ffe08a"/>
+        <ellipse cx="70" cy="77" rx="15" ry="11" fill="#fbe3c4"/>
+        <circle cx="53" cy="61" r="5" fill="#3a2230"/><circle cx="87" cy="61" r="5" fill="#3a2230"/>
+        <circle cx="54.6" cy="59.2" r="1.7" fill="#fff"/><circle cx="88.6" cy="59.2" r="1.7" fill="#fff"/>
+        <ellipse cx="70" cy="71" rx="6" ry="4.5" fill="#7a4a3a"/>
+        <path d="M62 79q8 8 16 0" stroke="#7a4a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="42" cy="75" r="7" fill="#f59ab3" opacity=".6"/><circle cx="98" cy="75" r="7" fill="#f59ab3" opacity=".6"/>
+        <ellipse cx="32" cy="101" rx="14" ry="9" fill="#f0c08a"/>
+        <g class="e2-wave"><ellipse cx="119" cy="76" rx="9" ry="15" transform="rotate(22 119 76)" fill="#f0c08a"/></g>
+        <ellipse cx="104" cy="102" rx="14" ry="9" fill="#f0c08a"/>
+      </svg>
+    </div>
+
+    <!-- LEFT: PHOTO + BOW -->
+    <div class="photo-side">
+      <div class="photo-heart">
+        <!-- Add your photo here later -->
+        <div class="photo-placeholder">
+          <span class="photo-icon">♡</span>
+          <p>Your favourite<br>memory goes here</p>
+          <small>A little memory, just for you</small>
+        </div>
+      </div>
+
+      <img class="photo-bow" src="assets/images/bow.png" alt=""
+           onerror="this.style.display='none'">
+
+      <span class="e2-tape" aria-hidden="true"></span>
+      <p class="e2-caption" id="e2Caption">for you ♡</p>
+
+      <span class="photo-sparkle sparkle-one">✧</span>
+      <span class="photo-sparkle sparkle-two">♡</span>
+    </div>
+
+    <!-- RIGHT: PASSCODE PANEL -->
+    <section class="code-side" aria-labelledby="codeTitle">
+      <p class="e2-note">psst… only for you ♡</p>
+      <p class="code-eyebrow">A LITTLE SECRET ✦</p>
+      <h1 id="codeTitle">Enter a passcode</h1>
+      <p class="code-subtitle">A tiny secret before the magic begins...</p>
+
+      <div class="code-display" id="codeDisplay" role="status" aria-label="Four-digit passcode">
+        <span class="code-slot">✿</span>
+        <span class="code-slot">✿</span>
+        <span class="code-slot">✿</span>
+        <span class="code-slot">✿</span>
+      </div>
+
+      <p class="code-hint" id="codeHint">A little surprise is waiting ♡</p>
+
+      <div class="number-pad" id="numberPad" aria-label="Number keypad">
+        <button type="button" class="number-key" data-digit="1">1</button>
+        <button type="button" class="number-key" data-digit="2">2</button>
+        <button type="button" class="number-key" data-digit="3">3</button>
+        <button type="button" class="number-key" data-digit="4">4</button>
+        <button type="button" class="number-key" data-digit="5">5</button>
+        <button type="button" class="number-key" data-digit="6">6</button>
+        <button type="button" class="number-key" data-digit="7">7</button>
+        <button type="button" class="number-key" data-digit="8">8</button>
+        <button type="button" class="number-key" data-digit="9">9</button>
+        <button type="button" class="number-key utility-key" data-action="clear">✕</button>
+        <button type="button" class="number-key" data-digit="0">0</button>
+        <button type="button" class="number-key utility-key" data-action="delete">⌫</button>
+      </div>
+
+      <button type="button" class="unlock-button" id="unlockButton">
+        <span>✧</span> Unlock the surprise <span>♡</span>
+      </button>
+
+      <p class="e2-hint">hint: a date we both remember ♡</p>
+
+      <p class="code-footer">Made with love &amp; a little magic ✦</p>
+    </section>
+  </section>
+
+  <!-- WRONG PASSCODE OVERLAY -->
+  <section class="wrong-screen" id="wrongScreen" hidden>
+    <div class="wrong-card">
+      <p class="wrong-eyebrow">OOPSIE! ♡</p>
+      <h2>WRONG PASSCODE</h2>
+
+      <!-- Three cartoon penguins (drawn in the sprite at the top of the page) -->
+      <div class="e2b-penguins" aria-hidden="true">
+        <div class="pg-wrap" style="--d:.35s"><svg viewBox="0 0 80 92"><use href="#pgn"/></svg><span class="q">?</span></div>
+        <div class="pg-wrap big" style="--d:.5s"><svg viewBox="0 0 80 92"><use href="#pgn"/></svg><span class="q">?</span></div>
+        <div class="pg-wrap" style="--d:.65s"><svg viewBox="0 0 80 92"><use href="#pgn"/></svg><span class="q">?</span></div>
+      </div>
+
+      <p class="wrong-message">
+        Hmm... that's not the secret code!<br>
+        Give it another little try ♡
+      </p>
+
+      <button type="button" class="try-again-button" id="tryAgainButton">
+        <span>↶</span> TRY AGAIN <span>♡</span>
+      </button>
+    </div>
+  </section>
+</main>
+
+<!-- ==========================================
+     ELEMENT 3 — THE ROOM IS WAITING FOR YOU
+========================================== -->
+<section class="screen s3" id="screen3" hidden aria-labelledby="s3Title">
+  <div class="s3-sky" id="s3Stars" aria-hidden="true"></div>
+  <div class="s3-bloom" aria-hidden="true"></div>
+  <div class="s3-rays" aria-hidden="true"></div>
+
+  <div class="s3-content">
+    <p class="s3-whisper">Shhh…</p>
+    <h2 class="s3-title" id="s3Title">The room is<br>waiting for you.</h2>
+    <p class="s3-sub">Someone left the lights off on purpose.</p>
+
+    <div class="s3-actions">
+      <button type="button" class="s3-button" id="s3Lights">Turn on the lights ✨</button>
+      <button type="button" class="s3-button s3-next" id="s3Next" hidden>Step inside ›</button>
+    </div>
+  </div>
+
+  <div class="s3-bear" aria-hidden="true">
+    <span class="s3-bang" aria-hidden="true">!</span>
+    <span class="s3-zzz">z</span><span class="s3-zzz z2">Z</span>
+    <svg viewBox="0 0 160 170" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="64" r="19" fill="#e2a96f"/><circle cx="40" cy="64" r="10" fill="#f6d3b0"/>
+        <circle cx="120" cy="64" r="19" fill="#e2a96f"/><circle cx="120" cy="64" r="10" fill="#f6d3b0"/>
+        <ellipse cx="80" cy="104" rx="53" ry="47" fill="#f0c08a"/>
+        <g class="b-hat"><polygon points="80,10 56,58 104,58" fill="#f7a8c8"/>
+        <polygon points="80,10 68,34 92,34" fill="#fff0f6" opacity=".55"/>
+        <circle cx="80" cy="9" r="7" fill="#ffe08a"/></g>
+        <ellipse cx="80" cy="118" rx="21" ry="15" fill="#fbe3c4"/>
+        <ellipse cx="80" cy="110" rx="6.5" ry="4.8" fill="#7a4a3a"/>
+        <g class="b-smile"><path d="M73 120q7 7 14 0" stroke="#7a4a3a" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+        <g class="b-open"><circle cx="63" cy="97" r="9.5" fill="#fff"/><circle cx="97" cy="97" r="9.5" fill="#fff"/><circle cx="63" cy="98.5" r="5" fill="#3a2230"/><circle cx="97" cy="98.5" r="5" fill="#3a2230"/><circle cx="65" cy="96" r="1.8" fill="#fff"/><circle cx="99" cy="96" r="1.8" fill="#fff"/></g>
+        <path class="b-brows" d="M52 80q10-8 21-2M87 78q11-6 21 2" stroke="#7a4a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse class="b-mouth-o" cx="80" cy="124" rx="5.5" ry="7.5" fill="#7a4a3a"/>
+        <g class="b-closed"><path d="M54 98q8 8 17 0M89 98q8 8 17 0" stroke="#7a4a3a" stroke-width="3.2" fill="none" stroke-linecap="round"/></g>
+        <circle cx="50" cy="114" r="8" fill="#f59ab3" opacity=".6"/><circle cx="110" cy="114" r="8" fill="#f59ab3" opacity=".6"/>
+        <ellipse cx="80" cy="158" rx="40" ry="12" fill="#e2a96f"/>
+      </svg>
+  </div>
+</section>
+
+<!-- ==========================================
+     ELEMENT 4 — HAPPY BIRTHDAY TITLE SCREEN
+========================================== -->
+<section class="screen s4" id="screen4" hidden aria-labelledby="s4Title">
+  <div class="s4-content">
+    <p class="s4-small">another beautiful year ✨</p>
+
+    <h2 class="s4-title" id="s4Title">
+      <span class="w w1">Happy</span> <span class="w w2">Birthday,</span><br>
+      <span class="w name" data-name>you</span>
+    </h2>
+
+    <p class="s4-sub"><span data-name>you</span>, today is all about you ✨</p>
+
+    <div class="s4-stage" id="s4Stage">
+    <button type="button" class="s4-book" id="s4Book" aria-label="Open the birthday book">
+      <span class="face s4-page">
+        <span class="dear">Dear <span data-name>you</span>,</span>
+        <span class="line">every page ahead<br>was made just for you</span>
+        <span class="hearts">♡ ♡ ♡</span>
+      </span>
+      <span class="s4-cover">
+        <span class="face front">
+          <span class="icons">🎁🎂</span>
+          <span class="cover-title">Birthday<br>Wishes,</span>
+          <span class="cover-name" data-name>you</span>
+          <span class="tap">tap to open ♡</span>
+        </span>
+        <span class="face back">
+          <span class="s4-polaroid"><span class="ph">&#9825;</span></span>
+          <span class="back-cap">my favourite people &#9825;</span>
+          <span class="back-stars">&#10022; &#9825; &#10023;</span>
+        </span>
+      </span>
+    </button>
+    </div>
+
+    <div class="s4-tiles" aria-hidden="true">
+      <span class="s4-tile">🎂</span><span class="s4-tile">🎈</span><span class="s4-tile">🎁</span>
+      <span class="s4-tile">✨</span><span class="s4-tile">💖</span><span class="s4-tile">📸</span>
+    </div>
+
+    <div class="s4-actions">
+      <button type="button" class="s4-next" id="s4Next" hidden>Read on ›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     ELEMENT 5 — THE LETTER (built by element5.js)
+========================================== -->
+<section class="screen s5" id="screen5" hidden aria-label="A letter for you"></section>
+
+<!-- ==========================================
+     ELEMENT 6 — MAKE A WISH (built by element6.js)
+========================================== -->
+<section class="screen s6" id="screen6" hidden aria-label="Make a wish"></section>
+
+<!-- ==========================================
+     ELEMENT 7 — THE CAKE (built by element7.js)
+========================================== -->
+<section class="screen s7" id="screen7" hidden aria-label="The birthday cake"></section>
+
+<!-- ==========================================
+     ELEMENT 8 — THE BIG GIFT (built by element8.js)
+========================================== -->
+<section class="screen s8" id="screen8" hidden aria-label="A big gift"></section>
+
+<!-- ELEMENT 9 — the beach ending (built by element9.js) -->
+<section class="screen s9" id="screen9" hidden aria-label="The ending"></section>
+
+<!-- ==========================================
+     GLOBAL BUTTONS: G2 music (top right), G3 note pad (bottom left)
+========================================== -->
+<button type="button" class="g-btn g-music on" id="musicButton" aria-pressed="true" aria-label="Turn the music off" hidden>
+  <span class="g-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<button type="button" class="g-btn g-note" id="noteButton" aria-label="Open a short note" hidden>
+  <svg viewBox="0 0 40 30" aria-hidden="true"><rect x="2" y="3" width="36" height="24" rx="4" fill="#e6d8fb"/><path d="M3 6l17 12L37 6" stroke="#b49af2" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M3 26l12-11M37 26L25 15" stroke="#cbb8ee" stroke-width="2" fill="none"/></svg><span class="badge">1</span>
+</button>
+
+<div class="g-note-modal" id="noteModal" role="dialog" aria-modal="true" aria-labelledby="noteTitle" hidden>
+  <div class="g-note-paper">
+    <button type="button" class="g-note-close" aria-label="Close the note">&#10005;</button>
+    <p class="title" id="noteTitle">A little note &#9825;</p>
+    <p class="text" id="noteText">Your note goes here.</p>
+    <p class="sign" id="noteSign">&mdash; with love</p>
+  </div>
+</div>
+
+</body>
+</html>

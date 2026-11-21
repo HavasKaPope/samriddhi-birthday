@@ -1,0 +1,60 @@
+/* ==========================================================
+   HEART FRAME for the passcode photo (element 2)
+   Needs:  assets/images/heart-frame.png   (the pink heart with ribbon, transparent background)
+   Your photo still goes in:  assets/images/memory.jpg
+   Load this file AFTER element2.css in index.html.
+   ========================================================== */
+
+.photo-side { max-width: 420px; padding: 4px; }
+
+.photo-heart {
+  aspect-ratio: 800 / 757;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  filter: drop-shadow(0 16px 22px rgba(120, 40, 80, .28));
+  --heart-window: url("data:image/png;base64,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");
+}
+
+/* the soft cream paper behind the photo (shows until her photo is added) */
+.photo-heart::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0; display: block;
+  background: linear-gradient(160deg, #fff8f4, #ffe9ee);
+  -webkit-mask: var(--heart-window) center / 100% 100% no-repeat;
+          mask: var(--heart-window) center / 100% 100% no-repeat;
+  color: transparent; font-size: 0;
+}
+
+/* the pink heart frame, drawn on top of the photo */
+.photo-heart::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  background: url("assets/images/heart-frame.png") center / 100% 100% no-repeat;
+}
+
+/* her photo: shaped like the heart, tucked under the ribbon and flowers */
+.photo-heart .slot-photo {
+  position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover;
+  -webkit-mask: var(--heart-window) center / 100% 100% no-repeat;
+          mask: var(--heart-window) center / 100% 100% no-repeat;
+}
+.photo-heart.has-photo::before { display: block; }   /* keep the paper behind the photo */
+
+/* the placeholder words sit inside the heart */
+.photo-heart .photo-placeholder { position: absolute; inset: 26% 30% 30% 30%; width: auto; height: auto; padding: 0; z-index: 1; gap: 4px; }
+.photo-heart .photo-placeholder p { font-size: clamp(14px, 1.5vw, 18px); }
+.photo-heart .photo-placeholder small { display: none; }
+.photo-heart .photo-icon { font-size: clamp(36px, 4.5vw, 56px); }
+
+/* the frame has its own ribbon bow, so the old bow and tape are not needed */
+.photo-bow, .e2-tape { display: none !important; }
+
+@media (max-width: 760px) {
+  .photo-side { width: min(78%, 270px); padding: 2px; }
+  .photo-heart .photo-placeholder p { font-size: 15px; }
+  .photo-heart .photo-icon { font-size: 34px; }
+  .photo-heart .photo-placeholder small { display: none; }
+}
